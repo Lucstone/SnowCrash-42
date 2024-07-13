@@ -37,16 +37,16 @@ end
 ```
 Nous voyons que le script attend une connexion sur le port 5151 et envoie "Password: " au client.
 
-Apes analyse du script nous voyons une faiblesse au niveau de io.popen("echo "..pass.." | sha1sum", "r")
+Après analyse du script nous voyons une faiblesse au niveau de io.popen("echo "..pass.." | sha1sum", "r")
 
 Par nos expériences précédentes nous savons que la fonction io.popen permet d'executer des commandes shell et de récupérer le résultat, donc nous décidons de tester si nous pouvons injecter des commandes shell.
 
-avec echo nous envoyons la commande shell suivante.
+Avec echo nous envoyons la commande shell suivante.
 
 ```bash
 echo '; getflag | tee /tmp/testq' | nc localhost 5151
 ```
-Nous avons envoyé la commande shell `getflag` et nous avons redirigé la sortie vers le fichier `/tmp/testq`.
+Nous avons envoyé la commande shell `getflag` et nous avons redirigé la sortie pour écrire directement vers le fichier `/tmp/testq`.
 
 Nous lisons le fichier `/tmp/testq` et nous voyons le flag.
 
