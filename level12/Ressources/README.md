@@ -30,6 +30,7 @@ sub n {
 Nous voyons que le script utilise la fonction `egrep` pour rechercher des lignes dans le fichier `/tmp/xd`.
 
 Il attend un argument x et y
+
 x est transformer en majuscule, il est donc impossible d'envoyer la commande directement
 
 Notre idée est de créer un fichier avec un nom en majuscule pour etre reconnu et lu par egrep.
