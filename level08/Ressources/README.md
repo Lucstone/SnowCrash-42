@@ -1,11 +1,11 @@
-Il a 2 fichiers, un binaire et un fichier texte qu'on ne peut lire faut d'avoir les droits pour.
+Il a 2 fichiers, un binaire et un fichier texte qu'on ne peut lire faute d'avoir les droits pour.
 
 ```bash
 ./level08 token
 You may not access 'token'
 ```
 
-On décompile binaire et on s'aperçoit qu'il y a une règle empéchant de lire le fichier token : 
+On décompile le binaire et on s'aperçoit qu'il y a une règle empéchant de lire le fichier token : 
 ![Ghidra level08](image.png)
 
 
