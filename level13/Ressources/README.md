@@ -1,4 +1,4 @@
-Au login nous voyon un binaire level13 que nous décidons de decomplier avec `ghidra` pour voir le code source.
+Au login nous voyons un binaire level13 que nous décidons de decomplier avec `ghidra` pour voir le code source.
 
 ```c
 void main(void)

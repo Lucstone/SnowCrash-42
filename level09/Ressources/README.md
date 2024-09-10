@@ -21,7 +21,7 @@ chmod 666 token
 
 On l'éxécute avec le contenu du fichier token :
 ```bash
-./reverse $(cat token)
+/tmp/reverse $(cat token)
 f3iji1ju5yuevaus41q1afiuq
 ```
 

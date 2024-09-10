@@ -1,7 +1,10 @@
-On trouve un fichier dans /etc nommée passwd
+Le dossier est vide, en cherchant dans les répertoires on trouve un fichier dans /etc nommée passwd
 ```bash
-find / -user flag01
+cat /etc/passwd
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
 ```
+
+Le mot de passe ne fonctionne pas il semble encodé.
 
 Copie du fichier pour le décoder via l'outil john 
 ```bash

